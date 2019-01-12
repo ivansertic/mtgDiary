@@ -15,7 +15,7 @@ public class Entry {
 
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    private UUID externalId;
+    private UUID externalEntryId;
 
     private String content;
 
@@ -43,11 +43,11 @@ public class Entry {
     }
 
     public UUID getExternalId() {
-        return externalId;
+        return externalEntryId;
     }
 
     public void setExternalId(UUID externalId) {
-        this.externalId = externalId;
+        this.externalEntryId = externalId;
     }
 
     public String getContent() {
@@ -72,7 +72,7 @@ public class Entry {
         if (o == null || getClass() != o.getClass()) return false;
         Entry entry = (Entry) o;
         return Objects.equals(id, entry.id) &&
-                Objects.equals(externalId, entry.externalId) &&
+                Objects.equals(externalEntryId, entry.externalEntryId) &&
                 Objects.equals(content, entry.content) &&
                 Objects.equals(timeStamp, entry.timeStamp) &&
                 Objects.equals(diary, entry.diary);
@@ -80,6 +80,6 @@ public class Entry {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, externalId, content, timeStamp, diary);
+        return Objects.hash(id, externalEntryId, content, timeStamp, diary);
     }
 }

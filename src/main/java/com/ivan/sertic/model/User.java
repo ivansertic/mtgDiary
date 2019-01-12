@@ -17,7 +17,7 @@ public class User {
 
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    private UUID externalId;
+    private UUID externalUserId;
 
     private String username;
 
@@ -71,11 +71,11 @@ public class User {
     }
 
     public UUID getExternalId() {
-        return externalId;
+        return externalUserId;
     }
 
     public void setExternalId(UUID externalId) {
-        this.externalId = externalId;
+        this.externalUserId = externalId;
     }
 
     public String getUsername() {

@@ -14,7 +14,7 @@ public class Card {
 
     @GeneratedValue(generator = "uuid2")
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
-    private UUID externalId;
+    private UUID externalCardId;
 
     private String name;
 
@@ -43,11 +43,11 @@ public class Card {
     }
 
     public UUID getExternalId() {
-        return externalId;
+        return externalCardId;
     }
 
     public void setExternalId(UUID externalId) {
-        this.externalId = externalId;
+        this.externalCardId = externalId;
     }
 
     public String getName() {
@@ -96,7 +96,7 @@ public class Card {
         if (o == null || getClass() != o.getClass()) return false;
         Card card = (Card) o;
         return Objects.equals(id, card.id) &&
-                Objects.equals(externalId, card.externalId) &&
+                Objects.equals(externalCardId, card.externalCardId) &&
                 Objects.equals(name, card.name) &&
                 Objects.equals(manaCost, card.manaCost) &&
                 Objects.equals(description, card.description) &&
@@ -106,6 +106,6 @@ public class Card {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, externalId, name, manaCost, description, edition, library);
+        return Objects.hash(id, externalCardId, name, manaCost, description, edition, library);
     }
 }
