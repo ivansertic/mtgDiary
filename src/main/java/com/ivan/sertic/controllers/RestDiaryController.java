@@ -44,7 +44,7 @@ public class RestDiaryController {
     }
 
     // Delete Diary
-    @RequestMapping(value = "/user/{externalUserId}/diary/{externalDiaryId}", method = RequestMethod.DELETE)
+    @RequestMapping(value = "/{externalUserId}/diary/{externalDiaryId}", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteDiary(@PathVariable("externalUserId")UUID externalUserID, @PathVariable("externalDiaryId")UUID externalDiaryId){
         logger.info("Deleting Diary");
         return new ResponseEntity<String>(deleteTest, HttpStatus.OK);
