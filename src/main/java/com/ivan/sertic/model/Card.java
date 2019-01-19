@@ -27,12 +27,13 @@ public class Card {
     @ManyToOne
     private Library library = new Library();
 
-    public Card(String name, String manaCost, String description, String edition) {
+    /*  --NOT SURE ABOUT THIS CTOR
+        public Card(String name, String manaCost, String description, String edition) {
         this.name = name;
         this.manaCost = manaCost;
         this.description = description;
         this.edition = edition;
-    }
+    }*/
 
     public Long getId() {
         return id;

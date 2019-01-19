@@ -37,10 +37,11 @@ public class User {
     )
     private Set<Library> libraries = new HashSet<>();
 
-    public User(String username, String password) {
+   /*  --NOT SURE ABOUT THIS CTOR--
+        public User(String username, String password) {
         this.username = username;
         this.password = password;
-    }
+    }*/
 
     public void addDiary(Diary diary){
         diaries.add(diary);
