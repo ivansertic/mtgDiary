@@ -14,6 +14,8 @@ public class EntryMapper {
         EntryDto dto = new EntryDto();
         dto.setContentDto(entity.getContent());
         dto.setTimestampDto(entity.getTimeStamp());
+        dto.setExternalEntryIdDto(entity.getExternalId());
+        dto.setIdDto(entity.getId());
         return dto;
     }
 

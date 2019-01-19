@@ -15,6 +15,8 @@ public class UserMapper {
         UserDto dto = new UserDto();
         dto.setPasswordDto(entity.getPassword());
         dto.setUsernameDto(entity.getUsername());
+        dto.setExternalUserIdDto(entity.getExternalId());
+        dto.setIdDto(entity.getId());
         return dto;
     }
 

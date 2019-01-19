@@ -23,6 +23,8 @@ public class LibraryMapper {
     public LibraryDto toDto(Library entity){
         LibraryDto dto = new LibraryDto();
         dto.setName(entity.getName());
+        dto.setExternalLibraryDtoID(entity.getExternalId());
+        dto.setId(entity.getId());
         return dto;
     }
 

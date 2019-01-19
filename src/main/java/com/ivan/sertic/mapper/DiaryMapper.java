@@ -22,6 +22,8 @@ public class DiaryMapper {
     public DiaryDto toDto(Diary entity){
         DiaryDto dto = new DiaryDto();
         dto.setNameDto(entity.getName());
+        dto.setExternalDiaryIdDto(entity.getExternalId());
+        dto.setIdDto(entity.getId());
         return dto;
     }
 

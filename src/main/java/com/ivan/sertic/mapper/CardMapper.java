@@ -18,6 +18,7 @@ public class CardMapper {
         dto.setEdition(entity.getEdition());
         dto.setManaCost(entity.getManaCost());
         dto.setName(entity.getName());
+        dto.setId(entity.getId());
 
         return dto;
     }
