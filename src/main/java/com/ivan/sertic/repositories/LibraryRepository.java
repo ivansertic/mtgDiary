@@ -8,8 +8,9 @@ import java.util.List;
 import java.util.UUID;
 
 public interface LibraryRepository extends CrudRepository<Library, Long> {
-    /* Ako ovo odkomentiram reče mi da funkcija findByExternalId vec postoji*/
-    //Library findByExternalId(UUID externalId);
+
+    Library findByExternalId(UUID externalId);
+
     @Query("Select l From Library where l.user.externalUserId = ?1")
-    List<Library> findByExternalId(UUID externalId);
+    List<Library> getByExternalId(UUID externalId);
 }
