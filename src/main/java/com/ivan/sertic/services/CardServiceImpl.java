@@ -1,9 +1,11 @@
 package com.ivan.sertic.services;
 
 import com.ivan.sertic.model.Card;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
+@Service
 public class CardServiceImpl implements CardService {
 
     private static Map<UUID, Card> cardRepo = new HashMap<>();
