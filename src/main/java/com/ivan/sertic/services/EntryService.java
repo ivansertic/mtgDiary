@@ -9,11 +9,11 @@ public interface EntryService {
 
     Entry getEntryByExternalId(UUID externalEntryId);
 
-    List<Entry> getAllEntries();
+    List<Entry> getAllEntries(UUID externalDiaryId);
 
     void update(UUID externalEntryId,Entry entry);
 
-    void deleteByExternalId(UUID externalEntryId);
+    void deleteByExternalId(UUID externalDiaryId);
 
     void create(Entry entry);
 }

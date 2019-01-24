@@ -13,4 +13,7 @@ public interface EntryRepository extends CrudRepository<Entry, Long> {
 
     @Query("Select e From Entry where e.diary.externalDiaryId= ?1")
     List<Entry> getByExternalId(UUID externalId);
+
+    @Query("DELETE FROM Entry e where e.diary.externalDiaryId=?1")
+    void deleteByExternalId(UUID externalUserId);
 }

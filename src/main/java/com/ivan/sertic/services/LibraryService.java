@@ -9,11 +9,11 @@ public interface LibraryService {
 
     Library getByExternalId(UUID externalLibraryId);
 
-    List<Library> getAllLibraries();
+    List<Library> getAllLibraries(UUID externalUserId);
 
     void update(UUID externalLibraryId,Library library);
 
-    void deleteByExternalId(UUID externalLibraryId);
+    void deleteByExternalId(UUID externalUserId);
 
     void create(Library library);
 }

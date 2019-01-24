@@ -25,8 +25,6 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public void update(UUID externalCardId, Card card) {
-        cardRepo.deleteByExternalCardId(externalCardId);
-        card.setExternalId(externalCardId);
         cardRepo.save(card);
     }
 

@@ -9,11 +9,11 @@ public interface DiaryService {
 
     Diary getDiaryByExternalId(UUID externalDiaryId);
 
-    List<Diary> getAllDiaries();
+    List<Diary> getAllDiaries(UUID externalUserId);
 
     void update(UUID externalDiaryId,Diary diary);
 
-    void deleteByExternalId(UUID externalDiaryId);
+    void deleteByExternalId(UUID externalUserId);
 
     void create(Diary diary);
 }
