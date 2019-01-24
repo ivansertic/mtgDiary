@@ -2,14 +2,14 @@ package com.ivan.sertic.services;
 
 import com.ivan.sertic.model.Card;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.UUID;
 
 public interface CardService {
 
     Card getCardByExternalId(UUID externalCardId);
 
-    List<Card> getAllCards();
+    Collection<Card> getAllCards();
 
     void update(UUID externalCardId,Card card);
 
