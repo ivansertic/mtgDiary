@@ -11,7 +11,7 @@ public interface EntryService {
 
     List<Entry> getAllEntries();
 
-    void update(Entry entry);
+    void update(UUID externalEntryId,Entry entry);
 
     void deleteByExternalId(UUID externalEntryId);
 

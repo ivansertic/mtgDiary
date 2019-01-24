@@ -11,7 +11,7 @@ public interface LibraryService {
 
     List<Library> getAllLibraries();
 
-    void update(Library library);
+    void update(UUID externalLibraryId,Library library);
 
     void deleteByExternalId(UUID externalLibraryId);
 

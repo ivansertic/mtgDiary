@@ -11,7 +11,7 @@ public interface DiaryService {
 
     List<Diary> getAllDiaries();
 
-    void update(Diary diary);
+    void update(UUID externalDiaryId,Diary diary);
 
     void deleteByExternalId(UUID externalDiaryId);
 
