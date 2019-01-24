@@ -1,6 +1,8 @@
 package com.ivan.sertic.services;
 
 import com.ivan.sertic.model.Card;
+import com.ivan.sertic.repositories.CardRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.*;
@@ -8,31 +10,33 @@ import java.util.*;
 @Service
 public class CardServiceImpl implements CardService {
 
-    private static Map<UUID, Card> cardRepo = new HashMap<>();
+    @Autowired
+    private CardRepository cardRepo;
+
     @Override
     public Card getCardByExternalId(UUID externalCardId) {
-        return cardRepo.get(externalCardId);
+        return cardRepo.findByExternalId(externalCardId);
     }
 
     @Override
-    public Collection<Card> getAllCards() {
-        return cardRepo.values();
+    public List<Card> getAllCards(UUID libraryExternalId) {
+        return cardRepo.getByExternalId(libraryExternalId);
     }
 
     @Override
     public void update(UUID externalCardId, Card card) {
-        cardRepo.remove(externalCardId);
+        cardRepo.deleteByExternalCardId(externalCardId);
         card.setExternalId(externalCardId);
-        cardRepo.put(externalCardId,card);
+        cardRepo.save(card);
     }
 
     @Override
     public void deleteByExternalId(UUID cardExternalId) {
-        cardRepo.remove(cardExternalId);
+        cardRepo.deleteByExternalCardId(cardExternalId);
     }
 
     @Override
     public void create(Card card) {
-        cardRepo.put(card.getExternalId(), card);
+        cardRepo.save(card);
     }
 }

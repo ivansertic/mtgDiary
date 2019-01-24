@@ -14,4 +14,7 @@ public interface CardRepository extends CrudRepository<Card, Long> {
 
     @Query("SELECT c FROM Card WHERE c.library.externaLibraryId = ?1")
     List<Card> getByExternalId(UUID externalId);
+
+    @Query("DELETE FROM Card c Where c.cardExternalId = ?1")
+    void deleteByExternalCardId(UUID externalCardId);
 }
