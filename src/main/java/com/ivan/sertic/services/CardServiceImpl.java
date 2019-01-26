@@ -17,7 +17,7 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public Card getCardByExternalId(UUID externalCardId) {
-        return cardRepo.findByExternalId(externalCardId);
+        return cardRepo.findByExternalCardId(externalCardId);
     }
 
     @Override

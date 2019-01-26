@@ -19,7 +19,7 @@ public class LibraryServiceImpl implements LibraryService {
 
     @Override
     public Library getByExternalId(UUID externalLibraryId) {
-        return libraryRepo.findByExternalId(externalLibraryId);
+        return libraryRepo.findByExternalLibraryId(externalLibraryId);
     }
 
     @Override
@@ -33,10 +33,6 @@ public class LibraryServiceImpl implements LibraryService {
 
     }
 
-    @Override
-    public void deleteSingleLibrary(UUID externalUserId, UUID externalLibraryId) {
-        libraryRepo.deleteLibraryFromUser(externalUserId,externalLibraryId);
-    }
 
     @Override
     public void update(UUID externalLibraryId, Library library) {

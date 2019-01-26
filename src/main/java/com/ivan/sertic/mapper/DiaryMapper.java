@@ -4,6 +4,8 @@ import com.ivan.sertic.dto.DiaryDto;
 import com.ivan.sertic.model.Diary;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class DiaryMapper {
 
@@ -31,6 +33,7 @@ public class DiaryMapper {
 
     public Diary createEntity(DiaryDto dto){
         Diary entity = new Diary();
+        entity.setExternalId(UUID.randomUUID());
         update(entity,dto);
         return entity;
     }

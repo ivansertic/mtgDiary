@@ -1,7 +1,5 @@
 package com.ivan.sertic.model;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.time.Instant;
 import java.util.Objects;
@@ -13,8 +11,6 @@ public class Entry {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID externalEntryId;
 
     private String content;

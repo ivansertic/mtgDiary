@@ -52,11 +52,23 @@ public class RestCardController {
         return ResponseEntity.ok().body(response);
     }
 
+    @RequestMapping(value ="/{externalUserId}/library/{externalLibraryId}/card/{externalCardId}", method = RequestMethod.GET)
+    public ResponseEntity<CardDto> getCard(@PathVariable("externalUserId")UUID externalUserId,
+                                        @PathVariable("externalLibraryId")UUID externalLibraryId,
+                                        @PathVariable("externalCardId")UUID externalCardId){
+        final Card card = cardService.getCardFromUserAndLibrary(externalLibraryId,externalUserId,externalCardId);
+
+        if(card == null){
+            return ResponseEntity.notFound().build();
+        }else{
+            return ResponseEntity.ok().body(cardMapper.cardDto(card));
+        }
+    }
+
     //Create Card
-    @RequestMapping(value = "/{externalUserId}/library/{externalLibraryId}/card/{externalCardId}", method = RequestMethod.POST)
+    @RequestMapping(value = "/{externalUserId}/library/{externalLibraryId}/card", method = RequestMethod.POST)
     public ResponseEntity<String> createCard(@PathVariable("externalUserId")UUID externalUserId,
                                              @PathVariable("externalLibraryId")UUID externalLibraryId,
-                                             @PathVariable("externalCardId")UUID externalCardId,
                                              @RequestBody CardDto dto ){
         final Library userLibrary = libraryService.getLibraryFromUser(externalUserId,externalLibraryId);
 
@@ -102,7 +114,7 @@ public class RestCardController {
         if(userCard == null){
             return ResponseEntity.notFound().build();
         }else{
-            cardService.deleteByExternalId(userCard.getExternalId());
+            cardService.deleteByExternalId(externalCardId);
             return ResponseEntity.ok().build();
         }
     }

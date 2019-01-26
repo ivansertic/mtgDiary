@@ -21,7 +21,7 @@ public class Library {
     private String name;
 
     @ManyToOne
-    private User user;
+    private Users user;
 
     @OneToMany(
             mappedBy = "library",
@@ -64,11 +64,11 @@ public class Library {
     public void setName(String name) {
         this.name = name;
     }
-    public User getUser() {
+    public Users getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 
@@ -88,12 +88,11 @@ public class Library {
         return Objects.equals(id, library.id) &&
                 Objects.equals(externalLibraryId, library.externalLibraryId) &&
                 Objects.equals(name, library.name) &&
-                Objects.equals(user, library.user) &&
-                Objects.equals(cards, library.cards);
+                Objects.equals(user, library.user);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, externalLibraryId, name, user, cards);
+        return Objects.hash(id, externalLibraryId, name, user);
     }
 }

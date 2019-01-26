@@ -18,7 +18,7 @@ public class DiaryServiceImpl implements DiaryService {
 
     @Override
     public Diary getDiaryByExternalId(UUID externalDiaryId) {
-        return diaryRepo.findByExternalId(externalDiaryId);
+        return diaryRepo.findByExternalDiaryId(externalDiaryId);
     }
 
     @Override
@@ -39,6 +39,11 @@ public class DiaryServiceImpl implements DiaryService {
     @Override
     public void delete(UUID externalUserId, UUID externalDiaryId) {
         diaryRepo.deleteDiaryFromUser(externalUserId,externalDiaryId );
+    }
+
+    @Override
+    public void delete(UUID externalDiaryId) {
+        diaryRepo.deleteDiary(externalDiaryId );
     }
 
     @Override

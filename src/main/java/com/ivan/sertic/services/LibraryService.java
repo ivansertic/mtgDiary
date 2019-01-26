@@ -13,8 +13,6 @@ public interface LibraryService {
 
     Library getLibraryFromUser(UUID externalUserId, UUID externalLibraryId);
 
-    void deleteSingleLibrary(UUID externalUserId, UUID externalLibraryId);
-
     void update(UUID externalLibraryId,Library library);
 
     void deleteByExternalId(UUID externalUserId);

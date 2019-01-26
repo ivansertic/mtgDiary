@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -33,7 +34,7 @@ public class RestEntryController {
     public static final Logger logger = LoggerFactory.getLogger(RestDiaryController.class);
 
     //Return all entries of a diary
-    @RequestMapping(value ="/{externalUserId}/diary/{externalDiaryId}/entry}", method = RequestMethod.GET)
+    @RequestMapping(value ="/{externalUserId}/diary/{externalDiaryId}/entry", method = RequestMethod.GET)
     public ResponseEntity<List<EntryDto>> getAllEntriesOfDiary(@PathVariable("externalUserId") UUID externalUserId,
                                                                @PathVariable("externalDiaryId") UUID externalDiaryId){
         final Diary userDiary = diaryService.getDiaryFromUser(externalDiaryId,externalUserId);
@@ -70,7 +71,7 @@ public class RestEntryController {
     @RequestMapping(value = "/{externalUserId}/diary/{externalDiaryId}/entry", method = RequestMethod.POST)
     public ResponseEntity<String> createDiaryEntry(@PathVariable("externalUserId") UUID externalUserId,
                                                    @PathVariable("externalDiaryId") UUID externalDiaryId,
-                                                   @RequestBody EntryDto dto){
+                                                   @Valid @RequestBody EntryDto dto){
         final Diary userDiary = diaryService.getDiaryFromUser(externalDiaryId,externalUserId);
 
         if(userDiary == null){

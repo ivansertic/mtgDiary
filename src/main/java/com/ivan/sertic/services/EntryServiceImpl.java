@@ -19,17 +19,17 @@ public class EntryServiceImpl implements EntryService {
 
     @Override
     public Entry getEntryByExternalId(UUID externalEntryId) {
-        return entryRepo.findByExternalId(externalEntryId);
+        return entryRepo.findByExternalEntryId(externalEntryId);
     }
 
     @Override
     public Entry getSingleEntry(UUID externalDiaryId, UUID externalUserId,UUID externalEntryId) {
-        return getSingleEntry(externalDiaryId,externalUserId, externalEntryId);
+        return entryRepo.getByUserAndDiary(externalDiaryId,externalUserId,externalEntryId);
     }
 
     @Override
     public List<Entry> getAllEntries(UUID externalDiaryId) {
-        return entryRepo.getByExternalId(externalDiaryId);
+        return entryRepo.getByExternalDiaryId(externalDiaryId);
     }
 
     @Override

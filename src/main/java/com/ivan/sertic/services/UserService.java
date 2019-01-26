@@ -1,9 +1,9 @@
 package com.ivan.sertic.services;
 
-import com.ivan.sertic.model.User;
+import com.ivan.sertic.model.Users;
 
 import java.util.UUID;
 
 public interface UserService {
-    User getUserByExternalId(UUID externalUserId);
+    Users getUserByExternalId(UUID externalUserId);
 }

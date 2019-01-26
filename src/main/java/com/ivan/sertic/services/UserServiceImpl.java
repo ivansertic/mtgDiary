@@ -1,6 +1,6 @@
 package com.ivan.sertic.services;
 
-import com.ivan.sertic.model.User;
+import com.ivan.sertic.model.Users;
 import com.ivan.sertic.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Override
-    public User getUserByExternalId(UUID externalUserId) {
-        return userRepository.findByExternalId(externalUserId);
+    public Users getUserByExternalId(UUID externalUserId) {
+        return userRepository.findByExternalUserId(externalUserId);
     }
 }

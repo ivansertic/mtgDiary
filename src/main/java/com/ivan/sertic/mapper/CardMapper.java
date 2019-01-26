@@ -4,6 +4,8 @@ import com.ivan.sertic.dto.CardDto;
 import com.ivan.sertic.model.Card;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class CardMapper {
 
@@ -28,6 +30,7 @@ public class CardMapper {
 
     public Card createEntity(CardDto dto){
         Card entity = new Card();
+        entity.setExternalId(UUID.randomUUID());
         update(entity, dto);
         return entity;
     }

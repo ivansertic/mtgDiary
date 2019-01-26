@@ -4,6 +4,8 @@ import com.ivan.sertic.dto.LibraryDto;
 import com.ivan.sertic.model.Library;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class LibraryMapper {
 
@@ -32,6 +34,7 @@ public class LibraryMapper {
 
     public Library createEntity(LibraryDto dto){
         Library entity = new Library();
+        entity.setExternalId(UUID.randomUUID());
         update(entity, dto);
         return entity;
     }

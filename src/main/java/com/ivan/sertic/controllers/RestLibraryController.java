@@ -3,7 +3,7 @@ package com.ivan.sertic.controllers;
 import com.ivan.sertic.dto.LibraryDto;
 import com.ivan.sertic.mapper.LibraryMapper;
 import com.ivan.sertic.model.Library;
-import com.ivan.sertic.model.User;
+import com.ivan.sertic.model.Users;
 import com.ivan.sertic.services.LibraryService;
 import com.ivan.sertic.services.UserService;
 import org.slf4j.Logger;
@@ -66,7 +66,7 @@ public class RestLibraryController {
     @RequestMapping(value = "/{externalUserId}/library", method = RequestMethod.POST)
     public ResponseEntity<String> createLibrary(@PathVariable("externalUserId")UUID externalUserId,
                                                 @RequestBody LibraryDto dto){
-        final User user = userService.getUserByExternalId(externalUserId);
+        final Users user = userService.getUserByExternalId(externalUserId);
 
         if(user == null){
             return ResponseEntity.notFound().build();
@@ -91,7 +91,7 @@ public class RestLibraryController {
         if(userLibrary == null){
             return ResponseEntity.notFound().build();
         }else{
-            libraryService.deleteSingleLibrary(externalUserId,externalLibraryId);
+            libraryService.deleteByExternalId(externalLibraryId);
             return ResponseEntity.ok().build();
         }
     }
@@ -99,7 +99,7 @@ public class RestLibraryController {
     //Delete All Libraries
     @RequestMapping(value = "/{externalUserId}/library", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteAllLibraries(@PathVariable("externalUserId") UUID externalUserId){
-        final User user = userService.getUserByExternalId(externalUserId);
+        final Users user = userService.getUserByExternalId(externalUserId);
 
         if(user == null){
             return ResponseEntity.notFound().build();

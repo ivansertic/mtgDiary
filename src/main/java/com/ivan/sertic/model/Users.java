@@ -8,7 +8,7 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-public class User {
+public class Users {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -38,7 +38,7 @@ public class User {
     private Set<Library> libraries = new HashSet<>();
 
    /*  --NOT SURE ABOUT THIS CTOR--
-        public User(String username, String password) {
+        public Users(String username, String password) {
         this.username = username;
         this.password = password;
     }*/

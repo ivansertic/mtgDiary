@@ -4,6 +4,8 @@ import com.ivan.sertic.dto.EntryDto;
 import com.ivan.sertic.model.Entry;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 @Component
 public class EntryMapper {
 
@@ -23,6 +25,7 @@ public class EntryMapper {
 
     public Entry createEntity(EntryDto dto){
         Entry entity = new Entry();
+        entity.setExternalId(UUID.randomUUID());
         update(entity, dto);
         return entity;
     }

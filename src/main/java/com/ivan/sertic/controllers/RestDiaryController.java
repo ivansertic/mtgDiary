@@ -4,7 +4,7 @@ package com.ivan.sertic.controllers;
 import com.ivan.sertic.dto.DiaryDto;
 import com.ivan.sertic.mapper.DiaryMapper;
 import com.ivan.sertic.model.Diary;
-import com.ivan.sertic.model.User;
+import com.ivan.sertic.model.Users;
 import com.ivan.sertic.services.DiaryService;
 import com.ivan.sertic.services.UserService;
 import org.slf4j.Logger;
@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
@@ -32,7 +33,7 @@ public class RestDiaryController {
     private DiaryMapper diaryMapper;
     public static final Logger logger = LoggerFactory.getLogger(RestDiaryController.class);
 
-    // Retrieve All Diaries of a User
+    // Retrieve All Diaries of a Users
     @RequestMapping(value = "/{externalUserId}/diary", method = RequestMethod.GET)
     public ResponseEntity<List<DiaryDto>> listAllDiaries(@PathVariable("externalUserId") UUID externalUserId){
         final List<Diary> userDiary = new LinkedList<>();
@@ -64,8 +65,8 @@ public class RestDiaryController {
     //Create diary
     @RequestMapping(value = "/{externalUserId}/diary", method = RequestMethod.POST)
     public ResponseEntity<String> createDiary(@PathVariable("externalUserId") UUID externalUserId,
-                                              @RequestBody DiaryDto dto){
-        final User user = userService.getUserByExternalId(externalUserId);
+                                              @Valid @RequestBody DiaryDto dto){
+        final Users user = userService.getUserByExternalId(externalUserId);
 
         if(user == null){
             return ResponseEntity.notFound().build();
@@ -89,14 +90,14 @@ public class RestDiaryController {
         if(userDiary == null){
             return ResponseEntity.notFound().build();
         }else{
-            diaryService.delete(externalUserID, externalDiaryId);
+            diaryService.delete(externalDiaryId);
             return ResponseEntity.ok().build();
         }
     }
 
     @RequestMapping(value = "/{externalUserId}/diary", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteAllDiaries(@PathVariable("externalUserId")UUID externalUserId){
-        final User user = userService.getUserByExternalId(externalUserId);
+        final Users user = userService.getUserByExternalId(externalUserId);
 
         if(user == null){
             return ResponseEntity.ok().build();

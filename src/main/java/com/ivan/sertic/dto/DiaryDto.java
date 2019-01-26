@@ -1,5 +1,6 @@
 package com.ivan.sertic.dto;
 
+import javax.validation.constraints.NotNull;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -10,6 +11,7 @@ public class DiaryDto {
 
     private UUID externalDiaryIdDto;
 
+    @NotNull
     private String nameDto;
 
     private UserDto userDto;

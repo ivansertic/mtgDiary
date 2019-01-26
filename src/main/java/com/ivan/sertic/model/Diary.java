@@ -1,7 +1,5 @@
 package com.ivan.sertic.model;
 
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Objects;
@@ -15,14 +13,12 @@ public class Diary {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @GeneratedValue(generator = "uuid2")
-    @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID externalDiaryId;
 
     private String name;
 
     @ManyToOne
-    private User user;
+    private Users user;
 
     @OneToMany(
             mappedBy = "diary",
@@ -66,11 +62,11 @@ public class Diary {
         this.name = name;
     }
 
-    public User getUser() {
+    public Users getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(Users user) {
         this.user = user;
     }
 
@@ -90,12 +86,11 @@ public class Diary {
         return Objects.equals(id, diary.id) &&
                 Objects.equals(externalDiaryId, diary.externalDiaryId) &&
                 Objects.equals(name, diary.name) &&
-                Objects.equals(user, diary.user) &&
-                Objects.equals(entries, diary.entries);
+                Objects.equals(user, diary.user) ;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, externalDiaryId, name, user, entries);
+        return Objects.hash(id, externalDiaryId, name, user);
     }
 }

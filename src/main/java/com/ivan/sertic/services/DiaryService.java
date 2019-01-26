@@ -17,6 +17,8 @@ public interface DiaryService {
 
     void delete(UUID externalUserId, UUID externalDiaryId);
 
+    void delete(UUID externalDiaryId);
+
     void create(Diary diary);
 
     Diary getDiaryFromUser(UUID externalDiaryId, UUID externalUserId);
