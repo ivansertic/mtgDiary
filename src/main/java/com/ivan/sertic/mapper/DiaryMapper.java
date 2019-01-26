@@ -2,7 +2,9 @@ package com.ivan.sertic.mapper;
 
 import com.ivan.sertic.dto.DiaryDto;
 import com.ivan.sertic.model.Diary;
+import org.springframework.stereotype.Component;
 
+@Component
 public class DiaryMapper {
 
     private EntryMapper entryMapper;

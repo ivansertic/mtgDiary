@@ -2,7 +2,9 @@ package com.ivan.sertic.mapper;
 
 import com.ivan.sertic.dto.EntryDto;
 import com.ivan.sertic.model.Entry;
+import org.springframework.stereotype.Component;
 
+@Component
 public class EntryMapper {
 
     public void update(Entry entity, EntryDto dto){

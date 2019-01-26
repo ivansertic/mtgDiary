@@ -11,6 +11,8 @@ public interface CardService {
 
     List<Card> getAllCards(UUID libraryExternalId);
 
+    Card getCardFromUserAndLibrary(UUID externalLibraryId, UUID externalUserId, UUID externalCardId);
+
     void update(UUID externalCardId,Card card);
 
     void deleteByExternalId(UUID cardExternalId);

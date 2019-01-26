@@ -1,43 +1,94 @@
 package com.ivan.sertic.controllers;
 
+import com.ivan.sertic.dto.CardDto;
+import com.ivan.sertic.mapper.CardMapper;
+import com.ivan.sertic.model.Card;
+import com.ivan.sertic.model.Library;
+import com.ivan.sertic.services.CardService;
+import com.ivan.sertic.services.LibraryService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.LinkedList;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/user")
 public class RestCardController {
+    @Autowired
+    private LibraryService libraryService;
+
+    @Autowired
+    private CardService cardService;
+
+    @Autowired
+    private CardMapper cardMapper;
 
     public static final Logger logger = LoggerFactory.getLogger(RestDiaryController.class);
 
+
+
     //Return Cards of a library
     @RequestMapping(value = "/{externalUserId}/library/{externalLibraryId}/card", method = RequestMethod.GET)
-    public ResponseEntity<String> getAllCards(@PathVariable("externalUserId")UUID externalUserId,
-                                              @PathVariable("externalLibraryId")UUID externalLibraryId){
-        return new ResponseEntity<String>("These are your cards", HttpStatus.OK);
+    public ResponseEntity<List<CardDto>> getAllCards(@PathVariable("externalUserId")UUID externalUserId,
+                                                     @PathVariable("externalLibraryId")UUID externalLibraryId){
+            final Library userLibrary = libraryService.getLibraryFromUser(externalUserId,externalLibraryId);
+            final List<Card> cards = new LinkedList<>();
+
+            if(userLibrary == null) {
+                return ResponseEntity.notFound().build();
+            }else {
+                cards.addAll(cardService.getAllCards(externalLibraryId));
+
+            }
+
+        final List<CardDto> response = cards.stream().map(card -> cardMapper.cardDto(card)).collect(Collectors.toList());
+
+        return ResponseEntity.ok().body(response);
     }
 
     //Create Card
     @RequestMapping(value = "/{externalUserId}/library/{externalLibraryId}/card/{externalCardId}", method = RequestMethod.POST)
     public ResponseEntity<String> createCard(@PathVariable("externalUserId")UUID externalUserId,
                                              @PathVariable("externalLibraryId")UUID externalLibraryId,
-                                             @PathVariable("externalCardId")UUID externalCardId){
-        return new ResponseEntity<String>("Your spell has been crafted",HttpStatus.OK);
+                                             @PathVariable("externalCardId")UUID externalCardId,
+                                             @RequestBody CardDto dto ){
+        final Library userLibrary = libraryService.getLibraryFromUser(externalUserId,externalLibraryId);
+
+        if(userLibrary == null) {
+            return ResponseEntity.notFound().build();
+        }else {
+            final Card card = cardMapper.createEntity(dto);
+
+            card.setLibrary(userLibrary);
+            userLibrary.getCards().add(card);
+
+            cardService.create(card);
+
+            return ResponseEntity.ok().build();
+        }
     }
 
     //Put a card into a library
     @RequestMapping(value = "/{externalUserId}/library/{externalLibraryId}/card/{externalCardId}", method = RequestMethod.PUT)
     public ResponseEntity<String> putCard(@PathVariable("externalUserId")UUID externalUserId,
                                           @PathVariable("externalLibraryId")UUID externalLibraryId,
-                                          @PathVariable("externalCardId")UUID externalCardId){
-        return new ResponseEntity<String>("Spell has been added",HttpStatus.OK);
+                                          @PathVariable("externalCardId")UUID externalCardId,
+                                          @RequestBody CardDto dto){
+        final Card userCard = cardService.getCardFromUserAndLibrary(externalLibraryId,externalUserId,externalCardId);
+
+        if(userCard == null){
+            return ResponseEntity.notFound().build();
+        }else{
+            cardMapper.update(userCard,dto);
+            cardService.update(externalCardId,userCard);
+            return ResponseEntity.ok().build();
+        }
     }
 
     //Delete Card
@@ -45,6 +96,14 @@ public class RestCardController {
     public ResponseEntity<String> deleteCard(@PathVariable("externalUserId")UUID externalUserId,
                                           @PathVariable("externalLibraryId")UUID externalLibraryId,
                                           @PathVariable("externalCardId")UUID externalCardId){
-        return new ResponseEntity<String>("Spell has been removed",HttpStatus.OK);
+
+        final Card userCard = cardService.getCardFromUserAndLibrary(externalLibraryId,externalUserId,externalCardId);
+
+        if(userCard == null){
+            return ResponseEntity.notFound().build();
+        }else{
+            cardService.deleteByExternalId(userCard.getExternalId());
+            return ResponseEntity.ok().build();
+        }
     }
 }

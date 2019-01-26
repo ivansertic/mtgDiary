@@ -9,6 +9,8 @@ public interface EntryService {
 
     Entry getEntryByExternalId(UUID externalEntryId);
 
+    Entry getSingleEntry(UUID externalDiaryId, UUID externalUserId, UUID externalEntryId);
+
     List<Entry> getAllEntries(UUID externalDiaryId);
 
     void update(UUID externalEntryId,Entry entry);

@@ -2,7 +2,9 @@ package com.ivan.sertic.mapper;
 
 import com.ivan.sertic.dto.LibraryDto;
 import com.ivan.sertic.model.Library;
+import org.springframework.stereotype.Component;
 
+@Component
 public class LibraryMapper {
 
     private CardMapper cardMapper;

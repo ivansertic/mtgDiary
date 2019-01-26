@@ -13,7 +13,11 @@ public interface DiaryService {
 
     void update(UUID externalDiaryId,Diary diary);
 
-    void deleteByExternalId(UUID externalUserId);
+    void deleteAll(UUID externalUserId);
+
+    void delete(UUID externalUserId, UUID externalDiaryId);
 
     void create(Diary diary);
+
+    Diary getDiaryFromUser(UUID externalDiaryId, UUID externalUserId);
 }

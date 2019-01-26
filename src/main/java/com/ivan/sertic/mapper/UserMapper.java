@@ -3,7 +3,9 @@ package com.ivan.sertic.mapper;
 
 import com.ivan.sertic.dto.UserDto;
 import com.ivan.sertic.model.User;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserMapper {
 
     public void update(User entity, UserDto dto){

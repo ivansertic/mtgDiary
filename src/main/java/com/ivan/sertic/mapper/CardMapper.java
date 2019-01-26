@@ -2,7 +2,9 @@ package com.ivan.sertic.mapper;
 
 import com.ivan.sertic.dto.CardDto;
 import com.ivan.sertic.model.Card;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CardMapper {
 
     public void update(Card entity, CardDto dto){

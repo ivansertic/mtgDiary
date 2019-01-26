@@ -12,8 +12,14 @@ public interface LibraryRepository extends CrudRepository<Library, Long> {
     Library findByExternalId(UUID externalId);
 
     @Query("Select l From Library where l.user.externalUserId = ?1")
-    List<Library> getByExternalId(UUID externalId);
+    List<Library> getAllByExternalId(UUID externalId);
+
+    @Query("Select l From Library where l.user.externalUserId = ?1 and l.externalLibraryId = ?2")
+    Library getByExternalId(UUID externalId, UUID libraryId);
 
     @Query("DELETE FROM Library l where l.user.externalUserId= ?1")
     void deleteByExternalId(UUID externalUserId);
+
+    @Query("DELETE FROM Library l where l.user.externalUserId =?1 and l.externalLibraryId = ?2 ")
+    void deleteLibraryFromUser(UUID externalUserId, UUID externalLibraryId);
 }
