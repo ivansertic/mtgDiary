@@ -1,47 +1,27 @@
 package com.ivan.sertic.dto;
 
-import java.util.UUID;
+import javax.validation.constraints.NotNull;
 
 public class UserDto {
-    private Long idDto;
+    @NotNull
+    private String username;
 
-    private UUID externalUserIdDto;
+    @NotNull
+    private String password;
 
-    private String usernameDto;
-
-    private String passwordDto;
-
-
-
-    public Long getIdDto() {
-        return idDto;
+    public String getUsername() {
+        return username;
     }
 
-    public void setIdDto(Long idDto) {
-        this.idDto = idDto;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public UUID getExternalUserIdDto() {
-        return externalUserIdDto;
+    public String getPassword() {
+        return password;
     }
 
-    public void setExternalUserIdDto(UUID externalUserIdDto) {
-        this.externalUserIdDto = externalUserIdDto;
-    }
-
-    public String getUsernameDto() {
-        return usernameDto;
-    }
-
-    public void setUsernameDto(String usernameDto) {
-        this.usernameDto = usernameDto;
-    }
-
-    public String getPasswordDto() {
-        return passwordDto;
-    }
-
-    public void setPasswordDto(String passwordDto) {
-        this.passwordDto = passwordDto;
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

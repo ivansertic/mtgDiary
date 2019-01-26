@@ -6,4 +6,9 @@ import java.util.UUID;
 
 public interface UserService {
     Users getUserByExternalId(UUID externalUserId);
+
+    Users getUserByUsernameAndPassword(String username, String password);
+
+    void createUser(Users user);
+
 }

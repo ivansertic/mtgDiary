@@ -9,4 +9,6 @@ import java.util.UUID;
 @Repository
 public interface UserRepository extends CrudRepository<Users, Long> {
     Users findByExternalUserId(UUID externalId);
+
+    Users findByUsernameAndPassword(String username, String passwprd);
 }

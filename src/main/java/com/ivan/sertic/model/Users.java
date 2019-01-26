@@ -19,6 +19,7 @@ public class Users {
     @GenericGenerator(name = "uuid2", strategy = "org.hibernate.id.UUIDGenerator")
     private UUID externalUserId;
 
+    @Column(unique=true)
     private String username;
 
     private String password;

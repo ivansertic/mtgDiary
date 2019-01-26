@@ -18,4 +18,14 @@ public class UserServiceImpl implements UserService {
     public Users getUserByExternalId(UUID externalUserId) {
         return userRepository.findByExternalUserId(externalUserId);
     }
+
+    @Override
+    public Users getUserByUsernameAndPassword(String username, String password) {
+        return userRepository.findByUsernameAndPassword(username,password);
+    }
+
+    @Override
+    public void createUser(Users user) {
+        userRepository.save(user);
+    }
 }
