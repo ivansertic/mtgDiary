@@ -34,6 +34,7 @@ public class RestDiaryController {
     public static final Logger logger = LoggerFactory.getLogger(RestDiaryController.class);
 
     // Retrieve All Diaries of a Users
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/diary", method = RequestMethod.GET)
     public ResponseEntity<List<DiaryDto>> listAllDiaries(@PathVariable("externalUserId") UUID externalUserId){
         final List<Diary> userDiary = new LinkedList<>();
@@ -51,6 +52,7 @@ public class RestDiaryController {
 
     // Retrieve single diary
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/diary/{externalDiaryId}", method = RequestMethod.GET)
     public ResponseEntity<DiaryDto> getDiaryEntry(@PathVariable("externalUserId") UUID externalUserId, @PathVariable("externalDiaryId") UUID externalDiaryId){
         final Diary userDiary = diaryService.getDiaryFromUser(externalDiaryId,externalUserId);
@@ -63,6 +65,7 @@ public class RestDiaryController {
     }
 
     //Create diary
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/diary", method = RequestMethod.POST)
     public ResponseEntity<String> createDiary(@PathVariable("externalUserId") UUID externalUserId,
                                               @Valid @RequestBody DiaryDto dto){
@@ -83,6 +86,7 @@ public class RestDiaryController {
     }
 
     // Delete Diary
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/diary/{externalDiaryId}", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteDiary(@PathVariable("externalUserId")UUID externalUserID, @PathVariable("externalDiaryId")UUID externalDiaryId){
         final Diary userDiary = diaryService.getDiaryFromUser(externalDiaryId,externalUserID);
@@ -95,6 +99,7 @@ public class RestDiaryController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/diary", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteAllDiaries(@PathVariable("externalUserId")UUID externalUserId){
         final Users user = userService.getUserByExternalId(externalUserId);
@@ -108,6 +113,7 @@ public class RestDiaryController {
         return ResponseEntity.ok().build();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/diary/{externalDiaryId}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateDiary(@PathVariable("externalUserId") UUID externalUserId,
                                               @PathVariable("externalDiaryId") UUID externalDiaryId,

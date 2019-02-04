@@ -34,6 +34,7 @@ public class RestCardController {
 
 
     //Return Cards of a library
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/library/{externalLibraryId}/card", method = RequestMethod.GET)
     public ResponseEntity<List<CardDto>> getAllCards(@PathVariable("externalUserId")UUID externalUserId,
                                                      @PathVariable("externalLibraryId")UUID externalLibraryId){
@@ -52,6 +53,7 @@ public class RestCardController {
         return ResponseEntity.ok().body(response);
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value ="/{externalUserId}/library/{externalLibraryId}/card/{externalCardId}", method = RequestMethod.GET)
     public ResponseEntity<CardDto> getCard(@PathVariable("externalUserId")UUID externalUserId,
                                         @PathVariable("externalLibraryId")UUID externalLibraryId,
@@ -66,6 +68,7 @@ public class RestCardController {
     }
 
     //Create Card
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/library/{externalLibraryId}/card", method = RequestMethod.POST)
     public ResponseEntity<String> createCard(@PathVariable("externalUserId")UUID externalUserId,
                                              @PathVariable("externalLibraryId")UUID externalLibraryId,
@@ -87,6 +90,7 @@ public class RestCardController {
     }
 
     //Put a card into a library
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/library/{externalLibraryId}/card/{externalCardId}", method = RequestMethod.PUT)
     public ResponseEntity<String> putCard(@PathVariable("externalUserId")UUID externalUserId,
                                           @PathVariable("externalLibraryId")UUID externalLibraryId,
@@ -104,6 +108,7 @@ public class RestCardController {
     }
 
     //Delete Card
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/library/{externalLibraryId}/card/{externalCardId}", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteCard(@PathVariable("externalUserId")UUID externalUserId,
                                           @PathVariable("externalLibraryId")UUID externalLibraryId,

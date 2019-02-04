@@ -34,6 +34,7 @@ public class RestLibraryController {
     public static final Logger logger = LoggerFactory.getLogger(RestDiaryController.class);
 
     //Retrieve all libraries
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/library", method = RequestMethod.GET)
     public ResponseEntity<List<LibraryDto>> getAllLibraries(@PathVariable("externalUserId") UUID externalUserId){
         final List<Library> userLibraries = new LinkedList<>();
@@ -50,6 +51,7 @@ public class RestLibraryController {
     }
 
     //Retrieve one Library
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/library/{externalLibraryId}", method = RequestMethod.GET)
     public ResponseEntity<LibraryDto> getOneLibrary(@PathVariable("externalUserId")UUID externalUserId,
                                                 @PathVariable("externalLibraryId")UUID externalLibraryId){
@@ -63,6 +65,7 @@ public class RestLibraryController {
     }
 
     //Create library
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/library", method = RequestMethod.POST)
     public ResponseEntity<String> createLibrary(@PathVariable("externalUserId")UUID externalUserId,
                                                 @RequestBody LibraryDto dto){
@@ -83,6 +86,7 @@ public class RestLibraryController {
     }
 
     //Delete library
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/library/{externalLibraryId}", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteLibrary(@PathVariable("externalUserId")UUID externalUserId,
                                                 @PathVariable("externalLibraryId") UUID externalLibraryId){
@@ -97,6 +101,7 @@ public class RestLibraryController {
     }
 
     //Delete All Libraries
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/library", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteAllLibraries(@PathVariable("externalUserId") UUID externalUserId){
         final Users user = userService.getUserByExternalId(externalUserId);
@@ -110,6 +115,7 @@ public class RestLibraryController {
         }
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/library/{externalLibraryId}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateLibrary (@PathVariable("externalUserId")UUID externalUserId,
                                                  @PathVariable("externalLibraryId") UUID externalLibraryId,

@@ -4,6 +4,7 @@ import com.ivan.sertic.dto.EntryDto;
 import com.ivan.sertic.model.Entry;
 import org.springframework.stereotype.Component;
 
+import java.time.Instant;
 import java.util.UUID;
 
 @Component
@@ -11,7 +12,7 @@ public class EntryMapper {
 
     public void update(Entry entity, EntryDto dto){
         entity.setContent(dto.getContentDto());
-        entity.setTimeStamp(dto.getTimestampDto());
+        entity.setTimeStamp(Instant.now());
     }
 
     public EntryDto toDto(Entry entity){

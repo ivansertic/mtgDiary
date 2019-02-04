@@ -34,6 +34,7 @@ public class RestEntryController {
     public static final Logger logger = LoggerFactory.getLogger(RestDiaryController.class);
 
     //Return all entries of a diary
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value ="/{externalUserId}/diary/{externalDiaryId}/entry", method = RequestMethod.GET)
     public ResponseEntity<List<EntryDto>> getAllEntriesOfDiary(@PathVariable("externalUserId") UUID externalUserId,
                                                                @PathVariable("externalDiaryId") UUID externalDiaryId){
@@ -53,6 +54,7 @@ public class RestEntryController {
 
     //Returns entry of a diary
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/diary/{externalDiaryId}/entry/{externalEntryId}", method = RequestMethod.GET)
     public ResponseEntity<EntryDto> getDiaryEntry(@PathVariable("externalUserId") UUID externalUserId,
                                                         @PathVariable("externalDiaryId") UUID externalDiaryId,
@@ -68,6 +70,7 @@ public class RestEntryController {
 
     //Create Diary entry
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/diary/{externalDiaryId}/entry", method = RequestMethod.POST)
     public ResponseEntity<String> createDiaryEntry(@PathVariable("externalUserId") UUID externalUserId,
                                                    @PathVariable("externalDiaryId") UUID externalDiaryId,
@@ -89,6 +92,7 @@ public class RestEntryController {
 
     //Update Diary
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/diary/{externalDiaryId}/entry/{externalEntryId}", method = RequestMethod.PUT)
     public ResponseEntity<String> updateEntry(@PathVariable("externalUserId")UUID externalUserId,
                                               @PathVariable("externalDiaryId")UUID externalDiaryId,
@@ -107,6 +111,7 @@ public class RestEntryController {
 
     //Delete entry
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @RequestMapping(value = "/{externalUserId}/diary/{externalDiaryId}/entry/{externalEntryId}", method = RequestMethod.DELETE)
     public ResponseEntity<String> deleteEntry(@PathVariable("externalUserId")UUID externalUserId,
                                               @PathVariable("externalDiaryId")UUID externalDiaryId,
